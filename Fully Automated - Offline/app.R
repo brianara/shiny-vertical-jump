@@ -534,6 +534,7 @@ server <- function(input, output, session){
                 ][, power := total_force * velocity]
     
     peak_power_index <- jump_data[, which.max(power)]
+    displacement = cumtrapz(1:nrow(jump_data), velocity) / sampling_rate
     
     # Landing index and takeoff index represent the first and last points the athlete is on the plates, respectively;
     # To only capture the time between these points, we need to subtract an additional index value before dividing by the sampling frequency
